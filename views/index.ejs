@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Eat-Da-Burger</title>
+        <link rel="stylesheet" href="../public/assets/css/burger_style.css">
+    </head>
+    <body>
+        <div id="burgers">
+            <% for(var i=0; i<burgers.length; i++) { %>
+                <p class="burger"><%= burgers[i].id %> - <%= burgers[i].name %></p>
+            <% } %>
+        </div>
+        <div id="devouredBurgers">
+            <% for(var i=0; i<devouredBurgers.length; i++) { %>
+                <p class="devoured"><%= devouredBurgers[i].id %> - <%= devouredBurgers[i].name %></p>
+            <% } %>
+        </div>
+    </body>
+</html>
