@@ -3,17 +3,80 @@
     <head>
         <title>Eat-Da-Burger</title>
         <link rel="stylesheet" href="../public/assets/css/burger_style.css">
+        <script src="https://code.jquery.com/jquery.js"></script>
     </head>
     <body>
         <div id="burgers">
+            <h1>Burgers</h1>
             <% for(var i=0; i<burgers.length; i++) { %>
-                <p class="burger"><%= burgers[i].id %> - <%= burgers[i].name %></p>
+                <p id=<%= "burger"+burgers[i].id %>>
+                <%= burgers[i].id %> - <%= burgers[i].burger_name %> 
+                </p>
+                <button class="devour" id=<%= burgers[i].id %>>Devour It!</button>
             <% } %>
         </div>
         <div id="devouredBurgers">
+            <h1>Devoured Burgers</h1>
             <% for(var i=0; i<devouredBurgers.length; i++) { %>
-                <p class="devoured"><%= devouredBurgers[i].id %> - <%= devouredBurgers[i].name %></p>
+                <p class="devoured"><%= devouredBurgers[i].id %> - <%= devouredBurgers[i].burger_name %></p>
             <% } %>
         </div>
+        <div>
+            <textarea id="newBurger" rows="4" cols="50"></textarea>
+            <button id="insertBurger">Submit</button>
+            <p>Enter a burger you want to eat, then click submit.</p>
+        </div>
+        <div id="burgerAPI">
+            <p><a href="/burger/api">API Burgers Link</a></p>
+        </div>
     </body>
+    
+    <script type='text/javascript'>
+        $("#burgers").on("click", ".devour", function(){
+            var burger_id = $(this).attr("id");
+            //console.log("I got this id: "+burger_id);
+  
+            $.ajax({
+                url: '/burger/update',
+                method: 'POST',
+                data: {id : burger_id}
+            }).then(function(){
+                var burger = $("#burger"+burger_id);
+                burger.remove();
+                burger.attr("class", "devoured");
+
+                $("#"+burger_id).remove();
+                $("#devouredBurgers").append(burger);
+            });
+        });
+
+        $("#insertBurger").on("click", function(){
+            if($("#newBurger").val().trim() === ""){
+                alert("Cannot add an empty burger.");
+                return;
+            }
+
+            var burgerName = $("#newBurger").val().trim();
+
+            $.ajax({
+                url: '/burger/insert',
+                method: 'POST',
+                data: {burger_name : burgerName}
+            }).then(function(result){
+                //console.log(result);
+
+                var p = $("<p>");
+                p.attr("id", "burger"+result.id);
+                p.text(result.id + " - " + burgerName);
+                var button = $("<button>");
+                button.attr("class", "devour")
+                    .attr("id", result.id)
+                    .text("Devour it!");
+                $("#burgers").append(p);
+                $("#burgers").append(button);
+
+                $("#newBurger").val("");
+            });
+        });
+    </script>
 </html>
