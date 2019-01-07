@@ -8,7 +8,7 @@ module.exports = function(app){
             res.json(results);
         });
     });
-
+ 
     app.post('/burger/insert', function(req, res){
         var burgerName = req.body.burger_name;
 
@@ -28,7 +28,7 @@ module.exports = function(app){
         });
     });
 
-    app.get('*', function(req, res) {
+    app.get('/', function(req, res) {
         var burgers, devouredBurgers;
 
         burger.selectBurgers(false, function(results){

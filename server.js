@@ -9,6 +9,8 @@ var burgerRoutes = require('./controllers/burgers_controller.js');
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+app.use(express.static(__dirname + '/public'));
+
 burgerRoutes(app);
 
 app.listen(PORT, function() {
