@@ -14,8 +14,8 @@
             <% for(var i=0; i<burgers.length; i++) { %>
                 <p id=<%= "burger"+burgers[i].id %>>
                 <%= burgers[i].id %> - <%= burgers[i].burger_name %> 
-                </p>
                 <button class="devour" id=<%= burgers[i].id %>>Devour It!</button>
+                </p>
             <% } %>
         </div>
         <div id="devouredBurgers">
@@ -25,7 +25,7 @@
             <% } %>
         </div>
         <div>
-            <textarea id="newBurger" rows="4" cols="50"></textarea>
+            <textarea id="newBurger" rows="4" cols="50" placeholder="Burger name here"></textarea> <br>
             <button id="insertBurger">Submit</button>
             <p>Enter a burger you want to eat, then click submit.</p>
         </div>
@@ -50,6 +50,7 @@
 
                 $("#"+burger_id).remove();
                 $("#devouredBurgers").append(burger);
+                $("#"+burger_id).remove();
             });
         });
 
@@ -75,8 +76,9 @@
                 button.attr("class", "devour")
                     .attr("id", result.id)
                     .text("Devour it!");
+                p.append(button);
                 $("#burgers").append(p);
-                $("#burgers").append(button);
+                //$("#burgers").append(button);
 
                 $("#newBurger").val("");
             });
