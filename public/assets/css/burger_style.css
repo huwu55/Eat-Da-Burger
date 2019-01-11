@@ -1,0 +1,46 @@
+body {
+    margin: auto;
+    text-align: center;
+    background-color: lightgoldenrodyellow;
+}
+
+#burgers, #devouredBurgers {
+    display: inline-block;
+}
+
+#burgers, #devouredBurgers{
+    text-align: left;
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 20px;
+    width: 40%;
+    min-width: 40%;
+    padding: 10px;
+    margin: 10px;
+    flex: 1;
+}
+
+#burgers {
+    border-color: orange;
+}
+
+#devouredBurgers {
+    border-color: lightgray;
+}
+
+#burgers h3{
+    text-align: center;
+}
+
+.devour {
+    float: right;
+    margin-left: 5px;
+}
+
+#devouredBurgers h3{
+    text-align: center;
+}
+
+.row{
+    display: flex;
+}

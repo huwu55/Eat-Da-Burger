@@ -2,27 +2,34 @@
 <html lang="en">
     <head>
         <title>Eat-Da-Burger</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <link rel="stylesheet" href="/assets/css/burger_style.css">
         <script src="https://code.jquery.com/jquery.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     </head>
     <body>
         <div>
             <img src="/assets/img/burger.jpg" alt="Burger" height="200" width="200">
+            <h1>Eat-Da-Burger</h1>
         </div>
-        <div id="burgers">
-            <h1>Burgers</h1>
-            <% for(var i=0; i<burgers.length; i++) { %>
-                <p id=<%= "burger"+burgers[i].id %>>
-                <%= burgers[i].id %> - <%= burgers[i].burger_name %> 
-                <button class="devour" id=<%= burgers[i].id %>>Devour It!</button>
-                </p>
-            <% } %>
-        </div>
-        <div id="devouredBurgers">
-            <h1>Devoured Burgers</h1>
-            <% for(var i=0; i<devouredBurgers.length; i++) { %>
-                <p class="devoured"><%= devouredBurgers[i].id %> - <%= devouredBurgers[i].burger_name %></p>
-            <% } %>
+        <div class="container">
+            <div class="row">
+                <div class="col-6" id="burgers">
+                    <h3>Burgers</h3>
+                    <% for(var i=0; i<burgers.length; i++) { %>
+                        <p id=<%= "burger"+burgers[i].id %>>
+                        <%= burgers[i].id %> - <%= burgers[i].burger_name %> 
+                        <button class="devour" id=<%= burgers[i].id %>>Devour It!</button>
+                        </p>
+                    <% } %>
+                </div>
+                <div class="col-6" id="devouredBurgers">
+                    <h3>Devoured Burgers</h3>
+                    <% for(var i=0; i<devouredBurgers.length; i++) { %>
+                        <p class="devoured"><%= devouredBurgers[i].id %> - <%= devouredBurgers[i].burger_name %></p>
+                    <% } %>
+                </div>
+            </div>
         </div>
         <div>
             <textarea id="newBurger" rows="4" cols="50" placeholder="Burger name here"></textarea> <br>
@@ -78,7 +85,6 @@
                     .text("Devour it!");
                 p.append(button);
                 $("#burgers").append(p);
-                //$("#burgers").append(button);
 
                 $("#newBurger").val("");
             });
